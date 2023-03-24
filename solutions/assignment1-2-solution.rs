@@ -1,20 +1,31 @@
-// Your assignment is to fix the errors in this code.
-
-
 trait Speak {
     fn speak(&self);
 }
 
 // A bunch of races.
-struct Human;
+struct Human {
+    name: String
+}
 struct Orc;
 struct HalfOrc;
 
+impl Human {
+    fn new(name: String) -> Self {
+        Self {
+            name: name,
+
+            // it's also ok to write just "name" if name will be bound to a field called name, to reduce boilerplate:
+            // name // this works instead of line 15
+
+        }
+    }
+}
 
 impl Speak for Human {
 
     fn speak(&self) {
         println!("I'm a human.");
+        println!("My name is {}", self.name)
     }
 }
 
@@ -36,9 +47,10 @@ fn let_unit_speak(unit: &impl Speak) {
 }
 
 fn main() {
-    let_unit_speak(&Human); // prints "I'm a human." (not explicitly instantiated like below)
+    let_unit_speak(&Human {name: "Kalle".to_string()}); // prints "I'm a human." (not explicitly instantiated like below)
     let_unit_speak(&Orc); // prints "I'm an orc."
     let_unit_speak(&HalfOrc); // prints "I'm half human and half orc."
 
-
+    let human = Human::new("Valle".to_string()); //instantiate human
+    human.speak();
 }
