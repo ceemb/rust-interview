@@ -1,37 +1,56 @@
-struct Event {
-    name: String,
-    day: u8,
-    month: u8,
-    year: u32
+trait Speak {
+    fn speak(&self);
 }
 
-impl Event {
-    pub fn new(name: String, day: u8, month: u8, year: u32) -> Event {
-        Event { name, day, month, year }
-    }
+// A bunch of races.
+struct Human {
+    name: String
+}
+struct Orc;
+struct HalfOrc;
 
-    pub fn has_conflict(&self, input: &Event) -> bool {
-        if input.day == self.day {
-            return true;
+impl Human {
+    fn new(name: String) -> Self {
+        Self {
+            name: name,
+
+            // it's also ok to write just "name" because the parameter name and the struct name are exactly the same:
+            // name // this works instead of line 15 (and reduces boilerplate)
+
         }
-        false
     }
-
-    pub fn update_event(&mut self) { // mutable reference of event2 as input
-        println!("update-event");
-        self.day = self.day + 1; 
-        //println!("{} was moved to {}/{} {}", self.name, self.day, self.month, self.year); // alternative to row 33
-    }
-
 }
 
-pub fn main() {
-    let event1 = Event::new("Pac-12 Championship".into(), 1, 12, 2017);
-    let mut event2 = Event::new("Group Project Meeting".into(), 1, 12, 2017); // event2 is mutable
-    if event1.has_conflict(&event2) {
-        event2.update_event(); 
-        println!("{} was moved to {}/{} {}", event2.name, event2.day, event2.month, event2.year);
-    } else {
-        println!("No conflicts");
+impl Speak for Human {
+
+    fn speak(&self) {
+        println!("I'm a human.");
+        println!("My name is {}", self.name)
     }
+}
+
+impl Speak for Orc {
+    fn speak(&self) {
+        println!("I'm an orc.");
+    }
+}
+
+impl Speak for HalfOrc {
+    fn speak(&self) {
+        println!("I'm half human and half orc.");
+    }
+}
+
+/// Free function that takes a reference to any object that implements Speak.
+fn let_unit_speak(unit: &impl Speak) {
+    unit.speak();
+}
+
+fn main() {
+    let_unit_speak(&Human {name: "Kalle".to_string()}); // prints "I'm a human." (not explicitly instantiated like below)
+    let_unit_speak(&Orc); // prints "I'm an orc."
+    let_unit_speak(&HalfOrc); // prints "I'm half human and half orc."
+
+    let human = Human::new("Valle".to_string()); //instantiate human
+    human.speak();
 }

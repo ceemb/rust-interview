@@ -1,5 +1,8 @@
 // Your assignment is to fix the errors in this code.
 
+// NOTE: don't look at assignment 2 until you finish assignment 1, 
+// unless you are ready to move on (as it will hint to the solution of assignment 1)
+
 
 trait Speak {
     fn speak(&self);
@@ -10,22 +13,21 @@ struct Human;
 struct Orc;
 struct HalfOrc;
 
-
 impl Speak for Human {
 
-    fn speak(&self) {
+    fn speak() {
         println!("I'm a human.");
     }
 }
 
 impl Speak for Orc {
-    fn speak(&self) {
+    fn speak() {
         println!("I'm an orc.");
     }
 }
 
 impl Speak for HalfOrc {
-    fn speak(&self) {
+    fn speak() {
         println!("I'm half human and half orc.");
     }
 }
@@ -36,9 +38,7 @@ fn let_unit_speak(unit: &impl Speak) {
 }
 
 fn main() {
-    let_unit_speak(&Human); // prints "I'm a human." (not explicitly instantiated like below)
-    let_unit_speak(&Orc); // prints "I'm an orc."
-    let_unit_speak(&HalfOrc); // prints "I'm half human and half orc."
-
-
+    let_unit_speak(Human); // prints "I'm a human." (not explicitly instantiated like below)
+    let_unit_speak(Orc); // prints "I'm an orc."
+    let_unit_speak(HalfOrc); // prints "I'm half human and half orc."
 }
