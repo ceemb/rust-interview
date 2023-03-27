@@ -11,7 +11,7 @@ impl Event {
     }
 
     pub fn has_conflict(&self, input: &Event) -> bool {
-        if input.day == self.day {
+        if input.day == self.day && input.month == self.month && input.year == self.year {
             return true;
         }
         false
