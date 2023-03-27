@@ -1,3 +1,6 @@
+// Rust does not have inheritance or classes. Instead, similar functionality is achieved with structs and traits.
+// Your assignment is to make this code compile , as well as make sure the Human introduces themselves with a name in line 54 and line 60.
+
 trait Speak {
     fn speak(&self);
 }
@@ -9,13 +12,11 @@ struct Human {
 struct Orc;
 struct HalfOrc;
 
+// the below block lets us instantiate "human" on line 59
 impl Human {
     fn new(name: String) -> Self {
         Self {
-            name: name,
-
-            // it's also ok to write just "name" because the parameter name and the struct name are exactly the same:
-            // name // this works instead of line 15 (and reduces boilerplate)
+            name: name, // this sets your given name to the instance of Human
 
         }
     }
@@ -25,7 +26,8 @@ impl Speak for Human {
 
     fn speak(&self) {
         println!("I'm a human.");
-        println!("My name is {}", self.name)
+        // add this line when you have implemented the name field for humans
+        //println!("My name is {}", self.name) 
     }
 }
 
@@ -41,16 +43,19 @@ impl Speak for HalfOrc {
     }
 }
 
-/// Free function that takes a reference to any object that implements Speak.
+/// Free function that takes a reference to any object that implements Speak (line 4).
 fn let_unit_speak(unit: &impl Speak) {
     unit.speak();
 }
 
 fn main() {
-    let_unit_speak(&Human {name: "Kalle".to_string()}); // prints "I'm a human." (not explicitly instantiated like below)
+    // line 54 prints "I'm a human." (without a "let" statement like on line 59)
+    // The line below should make a human introduce themselves and their name.
+    let_unit_speak(&Human); 
+
     let_unit_speak(&Orc); // prints "I'm an orc."
     let_unit_speak(&HalfOrc); // prints "I'm half human and half orc."
 
-    let human = Human::new("Valle".to_string()); //instantiate human
-    human.speak();
+    let human = Human::new(); // instantiate human (not the same human an on line 54)
+    human.speak(); // here, the instance "human" introduces themselves with their name (uncomment line 30 when you are ready)
 }
