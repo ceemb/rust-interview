@@ -1,41 +1,14 @@
-// Your assignment is to make the code compile and to implement the functions has_conflict() and update_event()
+// Your assignment is to fix the errors. Examples are from: https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
 
-struct Event {
-    name: String,
-    day: u8,
-    month: u8,
-    year: u32
-}
+// This assignment is just meant to illustrate the concept of ownership and lifetimes, so you can look at the article and the 
+// solution if you can't immediately solve it. The emphasis is on trying to understand the concept. 
+    
+fn main () {
+    let mut s = String::from("hello");
 
-// you need to add any arguments and return values to the functions below 
-// (you can use existing functions as inspiration)
-impl Event {
-    pub fn new(name: String, day: u8, month: u8, year: u32) -> Event {
-        Event { name, day, month, year }
-    }
+    let r1 = &mut s;
+    let r2 = &mut s;
 
-    pub fn has_conflict() { 
-        //your code here
-    }
+    println!("{}, {}", r1, r2);
 
-    // move event one day forward 
-    // (you can assume that it's not at the end of a month)
-    pub fn update_event() { 
-        //your code here
-    }
-
-}
-
-// it's ok to make edits below 
-// (a solution is possible with less than 10 characters edited below))
-pub fn main() {  
-    let event1 = Event::new("Pac-12 Championship".into(), 1, 12, 2017); // try changing this to a non-confligting date as a test
-    let event2 = Event::new("Group Project Meeting".into(), 1, 12, 2017);
-    if event1.has_conflict(event2) {
-        event2.update_event();
-        println!("{} was moved to {}/{} {}", event2.name, event2.day, event2.month, event2.year);
-
-    } else {
-        println!("No conflicts");
-    }
 }
