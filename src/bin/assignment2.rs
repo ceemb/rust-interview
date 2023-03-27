@@ -1,6 +1,9 @@
 // Rust does not have inheritance or classes. Instead, similar functionality is achieved with structs and traits.
 // Your assignment is to make this code compile , as well as make sure the Human introduces themselves with a name in line 54 and line 60.
 
+// Documentation on structs: https://doc.rust-lang.org/book/ch05-01-defining-structs.html
+// Documentation on using methods on structs: https://doc.rust-lang.org/book/ch05-03-method-syntax.html 
+
 trait Speak {
     fn speak(&self);
 }

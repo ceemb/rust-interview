@@ -1,7 +1,10 @@
 // Your assignment is to fix the errors in this code.
 
-// NOTE: don't look at assignment 2 until you finish assignment 1, 
-// unless you are ready to move on (as it will hint to the solution of assignment 1)
+// NOTE: don't look at assignment 2 until you finish assignment 1 or are 
+// ready to move on (as it will hint to the solution of assignment 1)
+
+// Documentation on structs: https://doc.rust-lang.org/book/ch05-01-defining-structs.html
+// Documentation on using methods on structs: https://doc.rust-lang.org/book/ch05-03-method-syntax.html 
 
 
 trait Speak {
