@@ -1,4 +1,4 @@
-// NOTE: You don't need to fix these errors, 8just try to understand why they occur. 
+// NOTE: You don't need to fix these errors, just try to understand why they occur. 
 // Examples are from: https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
 
 fn main () {

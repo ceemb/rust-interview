@@ -15,7 +15,7 @@ struct Human {
 struct Orc;
 struct HalfOrc;
 
-// the below block lets us instantiate "human" on line 59
+// the below block lets us instantiate "human" on line 62
 impl Human {
     fn new(name: String) -> Self {
         Self {
@@ -46,19 +46,19 @@ impl Speak for HalfOrc {
     }
 }
 
-/// Free function that takes a reference to any object that implements Speak (line 4).
+/// Free function that takes a reference to any object that implements Speak (line 7).
 fn let_unit_speak(unit: &impl Speak) {
     unit.speak();
 }
 
 fn main() {
-    // line 54 prints "I'm a human." (without a "let" statement like on line 59)
+    // line 54 prints "I'm a human." (without a "let" statement like on line 62)
     // The line below should make a human introduce themselves and their name.
     let_unit_speak(&Human); 
 
     let_unit_speak(&Orc); // prints "I'm an orc."
     let_unit_speak(&HalfOrc); // prints "I'm half human and half orc."
 
-    let human = Human::new(); // instantiate human (not the same human an on line 54)
-    human.speak(); // here, the instance "human" introduces themselves with their name (uncomment line 30 when you are ready)
+    let human = Human::new(); // instantiate human (not the same human an on line 57)
+    human.speak(); // here, the instance "human" introduces themselves with their name (uncomment line 33 when you are ready)
 }
